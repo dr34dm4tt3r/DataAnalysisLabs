@@ -15,21 +15,23 @@ from spyre import server
 import matplotlib.pyplot as plt
 import seaborn as sns
 import os
-# import time
-# from datetime import datetime
-# import urllib.requestear
+import time
+from datetime import datetime
+import urllib.request
 
-# def downloader(i):
-#     # download cvs files
-#     download_dir = "/home/andrii/kpi/course_2/data_analysis/DataAnalysisLabs/frames"
-#     url=f"https://www.star.nesdis.noaa.gov/smcd/emb/vci/VH/get_TS_admin.php?country=UKR&provinceID={i}&year1=1981&year2=2020&type=Mean".format(i)
-#     vhi_url = urllib.request.urlopen(url)
-#     now = datetime.now()
-#     date = now.strftime("%Y-%m-%d_%H-%M-%S")
-#     filename = f"vhi_{i}_{date}.csv"
-#     filepath = os.path.join(download_dir, filename)
-#     with open(filepath, "wb") as file:
-#         file.write(vhi_url.read())
+def downloader(i):
+    # download cvs files
+    # download_dir = "/home/andrii/kpi/course_2/data_analysis/DataAnalysisLabs/frames"
+    if not os.path.exists('frames'):
+        os.makedirs('frames')
+    url=f"https://www.star.nesdis.noaa.gov/smcd/emb/vci/VH/get_TS_admin.php?country=UKR&provinceID={i}&year1=1981&year2=2020&type=Mean".format(i)
+    vhi_url = urllib.request.urlopen(url)
+    now = datetime.now()
+    date = now.strftime("%Y-%m-%d_%H-%M-%S")
+    filename = f"vhi_{i}_{date}.csv"
+    filepath = os.path.join("frames", filename)
+    with open(filepath, "wb") as file:
+        file.write(vhi_url.read())
         
 def framer():
     # concatenate data frame
@@ -150,11 +152,11 @@ class Vegetation(server.App):
 
 def main():
     # executing downloader
-    # start_time = time.time()
-    # for i in range(1,28):
-    #     downloader(i)
-    # end_time = time.time()
-    # print(f"After {end_time-start_time} VHIs have been downloaded successfully...")
+    start_time = time.time()
+    for i in range(1,28):
+        downloader(i)
+    end_time = time.time()
+    print(f"After {end_time-start_time} VHIs have been downloaded successfully...")
         
     df = framer()
     # print(df)
