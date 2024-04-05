@@ -17,7 +17,7 @@ import seaborn as sns
 import os
 # import time
 # from datetime import datetime
-# import urllib.request
+# import urllib.requestear
 
 # def downloader(i):
 #     # download cvs files
@@ -34,7 +34,8 @@ import os
 def framer():
     # concatenate data frame
     headers = ['Year', 'Week', 'SMN', 'SMT', 'VCI', 'TCI', 'VHI', 'area']
-    files_dir = "/home/andrii/kpi/course_2/data_analysis/DataAnalysisLabs/frames"
+    # files_dir = "/home/andrii/kpi/course_2/data_analysis/DataAnalysisLabs/frames"
+    files_dir = "/home/remnux/dalabs/frames"
     dataframe = pd.DataFrame()
     files = os.listdir(files_dir)
     for i, file in enumerate(files):
