@@ -59,18 +59,18 @@ filteredSignal = lowpassFilter(signal, initialCutoffFrequency, samplingFrequency
 
 source = ColumnDataSource(data=dict(t=t, signal=signal, filteredSignal=filteredSignal))
 plot = figure(title="Graph of Harmonic with Noise", height=300, width=600, y_range=(-3, 3))
-line = plot.line('t', 'signal', source=source, line_width=3, line_alpha=0.6, color='green')  # Changed color to green
-scatter = plot.scatter('t', 'signal', source=source, size=3, color='green', alpha=0.6, visible=False)  # Changed color to green
+line = plot.line('t', 'signal', source=source, line_width=3, line_alpha=0.6, color='green')
+scatter = plot.scatter('t', 'signal', source=source, size=3, color='green', alpha=0.6, visible=False)
 
 plotFiltered = figure(title="Filtered Harmonic", height=300, width=600, y_range=(-3, 3))
-lineFiltered = plotFiltered.line('t', 'filteredSignal', source=source, line_width=3, line_alpha=0.6, color='purple')  # Changed color to purple
-scatterFiltered = plotFiltered.scatter('t', 'filteredSignal', source=source, size=3, color='purple', alpha=0.6, visible=False)  # Changed color to purple
-amplitudeSlider = Slider(start=0.1, end=10.0, value=initialAmplitude, step=0.1, title="Amplitude", bar_color='yellow')  # Changed slider color to yellow
-frequencySlider = Slider(start=0.1, end=10.0, value=initialFrequency, step=0.1, title="Frequency", bar_color='yellow')  # Changed slider color to yellow
-phaseSlider = Slider(start=0, end=2*np.pi, value=initialPhase, step=0.1, title="Phase", bar_color='yellow')  # Changed slider color to yellow
-noiseMeanSlider = Slider(start=-1.0, end=1.0, value=initialNoiseMean, step=0.1, title="Noise Mean", bar_color='yellow')  # Changed slider color to yellow
-noiseCovarianceSlider = Slider(start=0.0, end=1.0, value=initialNoiseCovariance, step=0.01, title="Noise Covariance", bar_color='yellow')  # Changed slider color to yellow
-cutoffSlider = Slider(start=0.1, end=5.0, value=initialCutoffFrequency, step=0.1, title="Cutoff Frequency", bar_color='yellow')  # Changed slider color to yellow
+lineFiltered = plotFiltered.line('t', 'filteredSignal', source=source, line_width=3, line_alpha=0.6, color='purple')
+scatterFiltered = plotFiltered.scatter('t', 'filteredSignal', source=source, size=3, color='purple', alpha=0.6, visible=False)
+amplitudeSlider = Slider(start=0.1, end=10.0, value=initialAmplitude, step=0.1, title="Amplitude", bar_color='yellow')
+frequencySlider = Slider(start=0.1, end=10.0, value=initialFrequency, step=0.1, title="Frequency", bar_color='yellow')
+phaseSlider = Slider(start=0, end=2*np.pi, value=initialPhase, step=0.1, title="Phase", bar_color='yellow')
+noiseMeanSlider = Slider(start=-1.0, end=1.0, value=initialNoiseMean, step=0.1, title="Noise Mean", bar_color='yellow')
+noiseCovarianceSlider = Slider(start=0.0, end=1.0, value=initialNoiseCovariance, step=0.01, title="Noise Covariance", bar_color='yellow')
+cutoffSlider = Slider(start=0.1, end=5.0, value=initialCutoffFrequency, step=0.1, title="Cutoff Frequency", bar_color='yellow')
 
 showNoiseCheckbox = CheckboxGroup(labels=["Show Noise"], active=[0])
 
@@ -104,7 +104,7 @@ def showNoiseCheckboxChanged(attrname, old, new):
     updateData(None, None, None)
 
 showNoiseCheckbox.on_change('active', showNoiseCheckboxChanged)
-resetButton = Button(label="Reset", button_type="success", width=100)  # Increased button width
+resetButton = Button(label="Reset", button_type="success", width=100)
 
 def reset():
     amplitudeSlider.value = initialAmplitude
